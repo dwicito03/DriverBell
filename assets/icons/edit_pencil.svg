@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Edit icon">
+  <rect width="64" height="64" rx="14" fill="#1f4f35"/>
+  <path d="M16 45l2-9 22-22a4 4 0 015.7 0l2.3 2.3a4 4 0 010 5.7L26 44l-10 1z" fill="#f4cf6a" stroke="#8a6518" stroke-width="2"/>
+  <path d="M37 17l10 10" stroke="#6e4e10" stroke-width="2"/>
+  <rect x="14" y="49" width="25" height="4" rx="2" fill="#e7e2cb"/>
+</svg>

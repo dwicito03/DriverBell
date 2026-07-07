@@ -1,0 +1,31 @@
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.venv/
+.buildvenv/
+
+# Build output
+build/
+build_preview/
+dist/
+dist_preview/
+installerOutput/
+bass24/
+
+# Local runtime data
+bell_config.json
+bell_log.csv
+
+# Large release/archive files
+*.7z
+*.zip
+*.exe
+*$*
+
+# Old working copy kept locally
+app developer.py
+
+# Local/bootstrap scratch
+_release_bootstrap/
+.agents/
+source_upload/

@@ -1,0 +1,6 @@
+wxPython
+apscheduler
+pytz
+tzlocal
+pywin32
+pyinstaller

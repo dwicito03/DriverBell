@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Add bell icon">
+  <defs>
+    <linearGradient id="bellGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd55e"/>
+      <stop offset="100%" stop-color="#f0ad1a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="14" fill="#2d5c3a"/>
+  <path d="M32 11c-8.5 0-15 6.5-15 15.3v7.4c0 3.4-1.2 6.5-3.4 8.7l-1.6 1.6c-.9.9-.2 2.4 1 2.4h37.9c1.2 0 1.9-1.5 1-2.4l-1.6-1.6c-2.2-2.2-3.4-5.3-3.4-8.7v-7.4C47 17.5 40.5 11 32 11z" fill="url(#bellGrad)" stroke="#9a6802" stroke-width="2"/>
+  <path d="M24.5 49.5c1.4 3.1 4.2 5 7.5 5s6.1-1.9 7.5-5" fill="none" stroke="#9a6802" stroke-width="2.6" stroke-linecap="round"/>
+
+  <!-- Clapper as a plus symbol -->
+  <g transform="translate(32 39)">
+    <circle r="7.2" fill="#fff7dc" stroke="#9a6802" stroke-width="1.8"/>
+    <rect x="-1.5" y="-4.4" width="3" height="8.8" rx="1" fill="#2d5c3a"/>
+    <rect x="-4.4" y="-1.5" width="8.8" height="3" rx="1" fill="#2d5c3a"/>
+  </g>
+</svg>

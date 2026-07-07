@@ -1,0 +1,14 @@
+DriverBell Changelog
+
+Versi 1.7.2 (13-07-2026)
+
+1. Tampilan aplikasi diperbarui agar lebih rapi, lebih nyaman digunakan, dan lebih sesuai untuk kebutuhan sekolah.
+2. Ditambahkan kolom Terakhir Diputar untuk melihat kapan sebuah jadwal bell terakhir berbunyi.
+3. Ditambahkan menu Tentang dan dialog Donasi.
+4. Ditambahkan pilihan untuk menampilkan atau menyembunyikan dialog sambutan saat aplikasi dibuka.
+5. Pemutaran audio dibuat lebih stabil untuk penggunaan offline di Windows.
+6. Dukungan file audio diperluas, termasuk mp3, wav, ogg, aac, flac, m4a, dan format audio umum lainnya.
+7. Ditambahkan pilihan Perangkat Keluaran agar pengguna dapat memilih speaker atau perangkat audio yang ingin dipakai.
+8. Aksesibilitas keyboard dan pembaca layar ditingkatkan, termasuk pembacaan daftar bell yang lebih lengkap setelah menyimpan Pengaturan.
+9. Fitur jalankan otomatis saat Windows menyala diperbaiki agar tidak membuka jendela Command Prompt.
+10. Ditambahkan pintasan Shift+Delete untuk menghapus jadwal bell yang sedang dipilih dari daftar.

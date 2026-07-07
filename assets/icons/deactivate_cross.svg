@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Deactivate icon">
+  <rect width="64" height="64" rx="14" fill="#6a1f1f"/>
+  <circle cx="32" cy="32" r="19" fill="#c13c3c" stroke="#4a1616" stroke-width="2"/>
+  <path d="M24 24l16 16M40 24L24 40" fill="none" stroke="#fff1f1" stroke-width="4.2" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,8 @@
+DriverBell License Agreement
+
+By installing this software, you agree to the following terms:
+- This software is provided as-is without warranties.
+- Redistribution without permission is not allowed.
+- For support, visit https://dwicito.com
+- Developed By: Dwi Citolaksono
+© 2026 dwicito.com.

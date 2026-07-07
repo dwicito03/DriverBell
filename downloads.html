@@ -1,0 +1,238 @@
+<section class="driverbell-download">
+  <style>
+    .driverbell-download {
+      max-width: 860px;
+      margin: 0 auto;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      color: #1f2937;
+    }
+
+    .driverbell-download h1,
+    .driverbell-download h2,
+    .driverbell-download h3 {
+      line-height: 1.25;
+      color: #111827;
+    }
+
+    .driverbell-download .download-card {
+      border: 1px solid #dbe3ef;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 18px;
+      background: #f8fafc;
+    }
+
+    .driverbell-download .download-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .driverbell-download .download-meta div {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 10px;
+      background: #ffffff;
+    }
+
+    .driverbell-download .label {
+      display: block;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .driverbell-download .value {
+      display: block;
+      margin-top: 2px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .driverbell-download .download-button {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 8px;
+      background: #0f766e;
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .driverbell-download .download-button[aria-disabled="true"] {
+      background: #94a3b8;
+      cursor: wait;
+      pointer-events: none;
+    }
+
+    .driverbell-download .download-note {
+      margin-top: 12px;
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    .driverbell-download .status {
+      margin-top: 10px;
+      color: #475569;
+    }
+  </style>
+
+  <h1>Welcome To DriverBell Download Page</h1>
+  <p>Terima kasih sudah berkunjung ke halaman resmi download DriverBell. Di sini Anda bisa mengunduh installer terbaru untuk membantu sekolah, pesantren, dan lembaga pendidikan mengatur bell harian secara otomatis.</p>
+  <p>Cukup instal aplikasinya, hubungkan komputer ke speaker atau sound system sekolah, buat jadwal bell, lalu biarkan DriverBell menjalankannya sesuai waktu yang sudah ditentukan.</p>
+
+  <h2>Informasi Software</h2>
+  <ul>
+    <li>Versi: <span id="driverbell-version">Memuat...</span></li>
+    <li>Lisensi: Gratis</li>
+    <li>Tanggal rilis: <span id="driverbell-release-date">Memuat...</span></li>
+  </ul>
+
+  <h2>Kebutuhan Minimum</h2>
+  <ul>
+    <li>Windows 10, Windows 11, atau yang lebih baru</li>
+    <li>RAM minimum 2 GB</li>
+    <li>Prosesor Intel atau AMD</li>
+    <li>Windows 64-bit</li>
+    <li>Ruang penyimpanan minimum 100 MB</li>
+    <li>Speaker output atau sound system</li>
+  </ul>
+
+  <div class="download-card" aria-live="polite">
+    <h2>Download Sekarang</h2>
+    <p>Link download di bawah ini diambil langsung dari GitHub Release terbaru DriverBell.</p>
+
+    <div class="download-meta">
+      <div>
+        <span class="label">File</span>
+        <span class="value" id="driverbell-file-name">Memuat...</span>
+      </div>
+      <div>
+        <span class="label">Ukuran</span>
+        <span class="value" id="driverbell-file-size">Memuat...</span>
+      </div>
+      <div>
+        <span class="label">Total Downloads</span>
+        <span class="value" id="driverbell-total-downloads">Memuat...</span>
+      </div>
+    </div>
+
+    <a id="driverbell-download-button" class="download-button" href="#" aria-disabled="true">Memuat link download...</a>
+    <p class="download-note">Jika browser menampilkan peringatan keamanan, pastikan file diunduh dari halaman resmi ini atau dari halaman GitHub Release DriverBell.</p>
+    <p class="status" id="driverbell-download-status">Mengambil informasi release dari GitHub...</p>
+  </div>
+
+  <script>
+    (function () {
+      const GITHUB_REPO = "dwicito03/DriverBell";
+
+      const els = {
+        version: document.getElementById("driverbell-version"),
+        releaseDate: document.getElementById("driverbell-release-date"),
+        fileName: document.getElementById("driverbell-file-name"),
+        fileSize: document.getElementById("driverbell-file-size"),
+        totalDownloads: document.getElementById("driverbell-total-downloads"),
+        button: document.getElementById("driverbell-download-button"),
+        status: document.getElementById("driverbell-download-status")
+      };
+
+      const formatNumber = new Intl.NumberFormat("id-ID");
+
+      function formatBytes(bytes) {
+        if (!bytes || bytes < 1) return "-";
+        const units = ["B", "KB", "MB", "GB"];
+        let size = bytes;
+        let unitIndex = 0;
+        while (size >= 1024 && unitIndex < units.length - 1) {
+          size = size / 1024;
+          unitIndex += 1;
+        }
+        return size.toLocaleString("id-ID", {
+          maximumFractionDigits: unitIndex === 0 ? 0 : 1
+        }) + " " + units[unitIndex];
+      }
+
+      function formatDate(value) {
+        if (!value) return "-";
+        return new Date(value).toLocaleDateString("id-ID", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        });
+      }
+
+      function findInstallerAsset(release) {
+        const assets = release.assets || [];
+        return assets.find(asset => /driverbell.*setup.*\.exe$/i.test(asset.name))
+          || assets.find(asset => /\.exe$/i.test(asset.name))
+          || assets[0];
+      }
+
+      function showError(message) {
+        els.version.textContent = "Tidak tersedia";
+        els.releaseDate.textContent = "Tidak tersedia";
+        els.fileName.textContent = "Tidak tersedia";
+        els.fileSize.textContent = "Tidak tersedia";
+        els.totalDownloads.textContent = "Tidak tersedia";
+        els.button.textContent = "Download belum tersedia";
+        els.button.setAttribute("aria-disabled", "true");
+        els.button.removeAttribute("href");
+        els.status.textContent = message;
+      }
+
+      async function loadReleaseInfo() {
+        try {
+          const response = await fetch("https://api.github.com/repos/" + GITHUB_REPO + "/releases", {
+            headers: { "Accept": "application/vnd.github+json" }
+          });
+
+          if (!response.ok) {
+            throw new Error("GitHub API error: " + response.status);
+          }
+
+          const releases = await response.json();
+          const publicReleases = releases.filter(release => !release.draft);
+          const latestRelease = publicReleases.find(release => !release.prerelease) || publicReleases[0];
+
+          if (!latestRelease) {
+            showError("Belum ada release publik di GitHub.");
+            return;
+          }
+
+          const installer = findInstallerAsset(latestRelease);
+          const totalDownloads = publicReleases.reduce((releaseTotal, release) => {
+            return releaseTotal + (release.assets || []).reduce((assetTotal, asset) => {
+              return assetTotal + (asset.download_count || 0);
+            }, 0);
+          }, 0);
+
+          if (!installer) {
+            showError("Release terbaru belum memiliki file installer.");
+            return;
+          }
+
+          els.version.textContent = latestRelease.tag_name || latestRelease.name || "Terbaru";
+          els.releaseDate.textContent = formatDate(latestRelease.published_at || latestRelease.created_at);
+          els.fileName.textContent = installer.name;
+          els.fileSize.textContent = formatBytes(installer.size);
+          els.totalDownloads.textContent = formatNumber.format(totalDownloads);
+
+          els.button.textContent = "Download DriverBell";
+          els.button.href = installer.browser_download_url;
+          els.button.removeAttribute("aria-disabled");
+          els.status.textContent = "Informasi download berhasil dimuat dari GitHub.";
+        } catch (error) {
+          showError("Gagal mengambil informasi dari GitHub. Silakan coba lagi nanti.");
+          console.error(error);
+        }
+      }
+
+      loadReleaseInfo();
+    })();
+  </script>
+</section>
+
+<!-- wp:html /-->
+
+<!-- wp:html /--> jangan dihilangkan, ini harus tetap ada.

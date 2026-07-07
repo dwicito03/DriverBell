@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Panduan DriverBell - v1.7.2</title>
+  <meta name="description" content="Panduan penggunaan DriverBell v1.7.2, aplikasi bell sekolah otomatis untuk Windows." />
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0ea5e9; --chip:#f1f5f9;
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+    header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid var(--line);z-index:10}
+    .wrap{max-width:980px;margin:0 auto;padding:20px}
+    h1{font-size:clamp(1.4rem,2.4vw,2rem);margin:.4rem 0}
+    h2{margin-top:2.2rem;font-size:1.25rem}
+    h3{margin-top:1.5rem;font-size:1.05rem}
+    p,li{font-size:1rem}
+    .meta{display:flex;flex-wrap:wrap;gap:.5rem;margin:.25rem 0 0}
+    .chip{background:var(--chip);padding:.25rem .5rem;border-radius:.5rem;font-size:.9rem}
+    nav.toc{border:1px solid var(--line);border-radius:12px;padding:1rem;background:#fff}
+    nav.toc ul{margin:.2rem 0 .2rem 1.25rem}
+    code{font-family:ui-monospace,SFMono-Regular,Consolas,Monaco,monospace;background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:.1rem .3rem}
+    .notice{border-left:4px solid var(--accent);background:#e0f2fe;padding:.75rem 1rem;border-radius:8px}
+    .lang-switch{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+    .lang-switch button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:.4rem .8rem;cursor:pointer}
+    .lang-switch button[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+    footer{margin:3rem 0 2rem;color:var(--muted);font-size:.95rem}
+    hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+    .muted{color:var(--muted)}
+    .kbd{display:inline-block;min-width:1.4ch;text-align:center;padding:.05rem .35rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;background:#f8fafc;font-family:ui-monospace,monospace;font-size:.95em}
+    .lang-block{display:none}
+    .lang-block.active{display:block}
+    a{color:#0369a1;text-decoration:none}
+    a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Header">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+      <div>
+        <h1>Panduan DriverBell <span class="muted">v1.7.2</span></h1>
+        <div class="meta" aria-label="Informasi">
+          <span class="chip" title="Penerbit">dwicito.com</span>
+          <span class="chip" title="Pembuat">Dwi Citolaksono</span>
+          <span class="chip" title="Tanggal Rilis">Rilis: 13-07-2026</span>
+        </div>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Pilihan bahasa">
+        <button id="btn-id" aria-pressed="true">Bahasa Indonesia</button>
+        <button id="btn-en" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="content" tabindex="-1">
+    <nav class="toc" aria-label="Daftar isi">
+      <strong>Daftar Isi | Table of Contents</strong>
+      <ul>
+        <li><a href="#overview">Tentang DriverBell | About DriverBell</a></li>
+        <li><a href="#requirements">Kebutuhan Komputer | Computer Requirements</a></li>
+        <li><a href="#installation">Cara Instal | Installation</a></li>
+        <li><a href="#usage">Cara Menggunakan | How to Use</a></li>
+        <li><a href="#audio">Audio dan Speaker | Audio and Speaker</a></li>
+        <li><a href="#settings">Pengaturan | Settings</a></li>
+        <li><a href="#troubleshooting">Jika Ada Masalah | Troubleshooting</a></li>
+        <li><a href="#about">Tentang Pembuat | About the Creator</a></li>
+      </ul>
+    </nav>
+
+    <section class="lang-block active" id="lang-id" lang="id" aria-label="Panduan Bahasa Indonesia">
+      <h2 id="overview">Tentang DriverBell</h2>
+      <p><strong>DriverBell</strong> adalah aplikasi untuk memutar bell sekolah secara otomatis di komputer Windows. Setelah jadwal dibuat, DriverBell akan membunyikan audio bell sesuai jam dan hari yang sudah ditentukan.</p>
+      <p>Aplikasi ini dapat digunakan tanpa internet. DriverBell juga dibuat agar nyaman dipakai dengan keyboard dan pembaca layar seperti NVDA.</p>
+      <p class="notice" role="note"><strong>Catatan:</strong> Jadwal bell, pengaturan, dan catatan pemutaran disimpan untuk masing-masing pengguna Windows.</p>
+
+      <h2 id="requirements">Kebutuhan Komputer</h2>
+      <ul>
+        <li>Windows 10 atau Windows 11.</li>
+        <li>Komputer 64-bit disarankan.</li>
+        <li>Tidak perlu memasang Python.</li>
+        <li>Tidak perlu memasang pemutar media tambahan.</li>
+        <li>Speaker atau perangkat audio harus aktif agar bell terdengar.</li>
+      </ul>
+
+      <h2 id="installation">Cara Instal</h2>
+      <ol>
+        <li>Buka file <code>DriverBellSetup.exe</code>.</li>
+        <li>Ikuti petunjuk yang tampil di layar.</li>
+        <li>Jika diminta memilih lokasi instalasi, biarkan lokasi bawaan jika tidak ada kebutuhan khusus.</li>
+        <li>Jika ingin shortcut di desktop, centang pilihan desktop shortcut.</li>
+        <li>Setelah selesai, DriverBell dapat langsung dijalankan dari Start Menu, desktop, atau pilihan Launch di akhir instalasi.</li>
+      </ol>
+      <p class="notice"><strong>Jika muncul peringatan Windows:</strong> Pilih <em>More info</em>, lalu <em>Run anyway</em>, hanya jika installer yang digunakan berasal dari sumber resmi DriverBell.</p>
+
+      <h2 id="usage">Cara Menggunakan</h2>
+      <h3>Membuat Jadwal Bell</h3>
+      <ol>
+        <li>Pilih tombol <strong>Tambahkan Bell</strong>.</li>
+        <li>Isi nama jadwal, misalnya "Masuk Kelas", "Istirahat", atau "Pulang".</li>
+        <li>Tentukan jam mulai.</li>
+        <li>Pilih hari berlakunya bell.</li>
+        <li>Pilih file audio yang akan diputar.</li>
+        <li>Gunakan tombol <strong>Pratinjau audio bell</strong> jika ingin mencoba suaranya terlebih dahulu.</li>
+        <li>Pilih <strong>Simpan</strong>.</li>
+      </ol>
+
+      <h3>Mengubah atau Menghapus Jadwal</h3>
+      <ul>
+        <li>Pilih jadwal dari daftar, lalu pilih <strong>Edit</strong> untuk mengubahnya.</li>
+        <li>Pilih <strong>Aktifkan</strong> atau <strong>Nonaktifkan</strong> untuk mengatur apakah jadwal tersebut berjalan.</li>
+        <li>Pilih <strong>Hapus</strong> untuk menghapus jadwal.</li>
+        <li>Jika fokus sedang berada di daftar jadwal, tekan <span class="kbd">Shift</span>+<span class="kbd">Delete</span> untuk menghapus jadwal yang dipilih.</li>
+      </ul>
+
+      <h3>Melihat Riwayat</h3>
+      <p>Pilih <strong>Lihat Log</strong> untuk melihat catatan pemutaran bell. Catatan ini berguna untuk memeriksa apakah bell berhasil diputar atau tidak.</p>
+
+      <h2 id="audio">Audio dan Speaker</h2>
+      <p>DriverBell dapat memutar beberapa jenis file audio, seperti <code>mp3</code>, <code>wav</code>, <code>ogg</code>, <code>aac</code>, <code>flac</code>, dan <code>m4a</code>.</p>
+      <p>Jika komputer memiliki lebih dari satu perangkat suara, misalnya speaker internal dan speaker USB, pilih perangkat yang sesuai dari menu <strong>Pengaturan</strong>.</p>
+
+      <h2 id="settings">Pengaturan</h2>
+      <ul>
+        <li><strong>Zona Waktu:</strong> Pilih zona waktu yang digunakan sekolah.</li>
+        <li><strong>Perangkat Keluaran:</strong> Pilih speaker atau perangkat audio yang ingin dipakai.</li>
+        <li><strong>Bahasa:</strong> Pilih Bahasa Indonesia atau English.</li>
+        <li><strong>Jalankan bell saat jendela ditutup:</strong> Jika aktif, DriverBell tetap berjalan di tray meskipun jendela utama ditutup.</li>
+        <li><strong>Jalankan otomatis saat Windows menyala:</strong> Jika aktif, DriverBell akan dibuka otomatis saat pengguna masuk ke Windows.</li>
+        <li><strong>Tampilkan dialog sambutan:</strong> Mengatur apakah pesan sambutan muncul saat aplikasi dibuka.</li>
+      </ul>
+      <p>Autostart DriverBell tidak membuka jendela Command Prompt.</p>
+
+      <h2 id="troubleshooting">Jika Ada Masalah</h2>
+      <h3>Bell tidak terdengar</h3>
+      <ul>
+        <li>Pastikan speaker menyala dan volume tidak mute.</li>
+        <li>Pastikan file audio masih ada di lokasi yang dipilih.</li>
+        <li>Pastikan jadwal bell dalam keadaan aktif.</li>
+        <li>Coba gunakan tombol pratinjau untuk mengetes file audio.</li>
+        <li>Jika menggunakan speaker khusus, periksa pilihan Perangkat Keluaran di Pengaturan.</li>
+      </ul>
+
+      <h3>DriverBell belum berjalan otomatis saat Windows menyala</h3>
+      <p>Buka <strong>Pengaturan</strong>, aktifkan <strong>Jalankan otomatis saat Windows menyala</strong>, lalu pilih <strong>Simpan</strong>. Jika sebelumnya memakai versi lama, matikan dulu pilihan ini, simpan, lalu aktifkan kembali dan simpan lagi.</p>
+
+      <h3>Pembaca layar tidak membacakan daftar dengan lengkap</h3>
+      <p>Pindahkan fokus keluar dari daftar, lalu masuk kembali ke daftar jadwal. Pada versi ini, DriverBell sudah menambahkan pembacaan yang lebih lengkap untuk nama jadwal, jam, hari, status, dan terakhir diputar.</p>
+
+      <h3>Pengaturan tidak tersimpan</h3>
+      <p>DriverBell menyimpan data di folder <code>%AppData%\DriverBell</code>. Pastikan Windows tidak memblokir akses ke folder tersebut.</p>
+
+      <h2 id="about">Tentang Pembuat</h2>
+      <p><strong>Pembuat:</strong> Dwi Citolaksono<br />
+         <strong>Website:</strong> <a href="https://dwicito.com" target="_blank" rel="noopener">dwicito.com</a><br />
+         <strong>Download resmi:</strong> <a href="https://dwicito.com/downloads-driverbell" target="_blank" rel="noopener">dwicito.com/downloads-driverbell</a>
+      </p>
+      <hr />
+      <p class="muted">&copy; 2026 dwicito.com. Panduan DriverBell v1.7.2. Rilis: 13-07-2026.</p>
+    </section>
+
+    <section class="lang-block" id="lang-en" lang="en" aria-label="English Guide">
+      <h2 id="overview-en">About DriverBell</h2>
+      <p><strong>DriverBell</strong> is a Windows application for playing school bells automatically. After the schedule is set, DriverBell plays the selected bell audio at the chosen time and day.</p>
+      <p>The app can be used without an internet connection. It is also comfortable to use with a keyboard and screen readers such as NVDA.</p>
+      <p class="notice" role="note"><strong>Note:</strong> Bell schedules, settings, and playback logs are saved for each Windows user.</p>
+
+      <h2 id="requirements-en">Computer Requirements</h2>
+      <ul>
+        <li>Windows 10 or Windows 11.</li>
+        <li>A 64-bit computer is recommended.</li>
+        <li>Python does not need to be installed.</li>
+        <li>No extra media player is required.</li>
+        <li>A speaker or audio device must be active so the bell can be heard.</li>
+      </ul>
+
+      <h2 id="installation-en">Installation</h2>
+      <ol>
+        <li>Open <code>DriverBellSetup.exe</code>.</li>
+        <li>Follow the instructions on the screen.</li>
+        <li>If asked to choose an install location, keep the default location unless you have a special need.</li>
+        <li>If you want a desktop shortcut, enable the desktop shortcut option.</li>
+        <li>After installation, DriverBell can be opened from the Start Menu, desktop, or the Launch option at the end of setup.</li>
+      </ol>
+      <p class="notice"><strong>If Windows shows a warning:</strong> Choose <em>More info</em>, then <em>Run anyway</em>, only if the installer comes from the official DriverBell source.</p>
+
+      <h2 id="usage-en">How to Use</h2>
+      <h3>Create a Bell Schedule</h3>
+      <ol>
+        <li>Choose <strong>Add Bell</strong>.</li>
+        <li>Enter a schedule name, such as "Class Starts", "Break", or "Go Home".</li>
+        <li>Set the start time.</li>
+        <li>Select the days when the bell should run.</li>
+        <li>Select the audio file to play.</li>
+        <li>Use <strong>Preview the bell</strong> if you want to test the sound first.</li>
+        <li>Choose <strong>Save</strong>.</li>
+      </ol>
+
+      <h3>Edit or Delete a Schedule</h3>
+      <ul>
+        <li>Select a schedule from the list, then choose <strong>Edit</strong> to change it.</li>
+        <li>Choose <strong>Activate</strong> or <strong>Deactivate</strong> to control whether the schedule runs.</li>
+        <li>Choose <strong>Delete</strong> to remove a schedule.</li>
+        <li>When focus is on the schedule list, press <span class="kbd">Shift</span>+<span class="kbd">Delete</span> to delete the selected schedule.</li>
+      </ul>
+
+      <h3>View Log</h3>
+      <p>Choose <strong>View Log</strong> to see bell playback records. This can help you check whether a bell played successfully.</p>
+
+      <h2 id="audio-en">Audio and Speaker</h2>
+      <p>DriverBell can play several audio file types, such as <code>mp3</code>, <code>wav</code>, <code>ogg</code>, <code>aac</code>, <code>flac</code>, and <code>m4a</code>.</p>
+      <p>If the computer has more than one sound device, such as built-in speakers and USB speakers, choose the correct one from <strong>Settings</strong>.</p>
+
+      <h2 id="settings-en">Settings</h2>
+      <ul>
+        <li><strong>Timezone:</strong> Choose the timezone used by the school.</li>
+        <li><strong>Output Device:</strong> Choose the speaker or audio device to use.</li>
+        <li><strong>Language:</strong> Choose Indonesian or English.</li>
+        <li><strong>Keep bells running when the window is closed:</strong> If enabled, DriverBell keeps running in the tray after the main window is closed.</li>
+        <li><strong>Auto-start when Windows starts:</strong> If enabled, DriverBell opens automatically when the user signs in to Windows.</li>
+        <li><strong>Show welcome dialog:</strong> Choose whether the welcome message appears when the app opens.</li>
+      </ul>
+      <p>DriverBell autostart does not open a Command Prompt window.</p>
+
+      <h2 id="troubleshooting-en">Troubleshooting</h2>
+      <h3>The bell cannot be heard</h3>
+      <ul>
+        <li>Make sure the speaker is on and the volume is not muted.</li>
+        <li>Make sure the audio file still exists at the selected location.</li>
+        <li>Make sure the bell schedule is active.</li>
+        <li>Try the preview button to test the audio file.</li>
+        <li>If using a special speaker, check the Output Device setting.</li>
+      </ul>
+
+      <h3>DriverBell does not start automatically with Windows</h3>
+      <p>Open <strong>Settings</strong>, enable <strong>Auto-start when Windows starts</strong>, then choose <strong>Save</strong>. If you used an older version before, turn this option off, save, turn it on again, and save once more.</p>
+
+      <h3>The screen reader does not read the list completely</h3>
+      <p>Move focus out of the list, then return to the schedule list. This version adds fuller reading for the schedule name, time, days, status, and last played time.</p>
+
+      <h3>Settings are not saved</h3>
+      <p>DriverBell saves data in <code>%AppData%\DriverBell</code>. Make sure Windows is not blocking access to that folder.</p>
+
+      <h2 id="about-en">About the Creator</h2>
+      <p><strong>Creator:</strong> Dwi Citolaksono<br />
+         <strong>Website:</strong> <a href="https://dwicito.com" target="_blank" rel="noopener">dwicito.com</a><br />
+         <strong>Official download:</strong> <a href="https://dwicito.com/downloads-driverbell" target="_blank" rel="noopener">dwicito.com/downloads-driverbell</a>
+      </p>
+      <hr />
+      <p class="muted">&copy; 2026 dwicito.com. DriverBell guide v1.7.2. Release: 13-07-2026.</p>
+    </section>
+  </main>
+
+  <footer class="wrap" role="contentinfo">
+    <p class="muted">Informasi resmi dan pembaruan DriverBell tersedia melalui halaman download resmi di atas.</p>
+  </footer>
+
+  <script>
+    const blockID = document.getElementById('lang-id');
+    const blockEN = document.getElementById('lang-en');
+    const btnID = document.getElementById('btn-id');
+    const btnEN = document.getElementById('btn-en');
+    function setLang(lang){
+      const isID = lang === 'id';
+      blockID.classList.toggle('active', isID);
+      blockEN.classList.toggle('active', !isID);
+      btnID.setAttribute('aria-pressed', String(isID));
+      btnEN.setAttribute('aria-pressed', String(!isID));
+      document.documentElement.lang = isID ? 'id' : 'en';
+      document.title = isID ? 'Panduan DriverBell - v1.7.2' : 'DriverBell Guide - v1.7.2';
+      document.getElementById('content').focus();
+    }
+    btnID.addEventListener('click', ()=>setLang('id'));
+    btnEN.addEventListener('click', ()=>setLang('en'));
+  </script>
+</body>
+</html>
