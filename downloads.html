@@ -1,238 +1,183 @@
-<section class="driverbell-download">
-  <style>
-    .driverbell-download {
-      max-width: 860px;
-      margin: 0 auto;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65;
-      color: #1f2937;
-    }
+<style>
+.driverbell-language-switch {
+  border: 2px solid #222;
+  padding: 12px;
+  margin-bottom: 16px;
+  background: #f3f3f3;
+}
+.driverbell-language-switch strong {
+  display: block;
+  margin-bottom: 8px;
+}
+.driverbell-language-switch button {
+  font-weight: bold;
+  padding: 8px 12px;
+  margin-right: 8px;
+  border: 2px solid #444;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+}
+.driverbell-language-switch button[aria-pressed="true"] {
+  background: #111;
+  color: #fff;
+}
+.driverbell-language-panel[hidden] {
+  display: none;
+}
+</style>
 
-    .driverbell-download h1,
-    .driverbell-download h2,
-    .driverbell-download h3 {
-      line-height: 1.25;
-      color: #111827;
-    }
+<div class="driverbell-language-switch" aria-label="Language selection">
+<strong>Choose Language / Pilih Bahasa</strong>
+<button type="button" id="driverbell-lang-en" aria-pressed="true">English</button>
+<button type="button" id="driverbell-lang-id" aria-pressed="false">Indonesia</button>
+</div>
 
-    .driverbell-download .download-card {
-      border: 1px solid #dbe3ef;
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 18px;
-      background: #f8fafc;
-    }
+<div id="driverbell-panel-en" class="driverbell-language-panel" lang="en">
+<h1>Welcome To DriverBell Download Page</h1>
+<p>Thank you for visiting the official DriverBell download page. Here you can download the latest installer for software I developed to help schools, Islamic boarding schools, and educational institutions automate daily bell playback in a simple, stable, and accessible way.</p>
+<p>Just install the software, connect the computer to the school sound system, create the bell schedules, and let everything run automatically.</p>
+<h2>Development Information</h2>
+<ul>
+<li>Version: V1.7.2</li>
+<li>License: Free (No Payment)</li>
+<li>Release Date: Monday, 13-07-2026</li>
+</ul>
+<h2>Minimum Requirements</h2>
+<ul>
+<li>Windows 10, Windows 11, or newer</li>
+<li>Minimum RAM: 2GB</li>
+<li>Processor: Intel or AMD</li>
+<li>64Bit</li>
+<li>Minimum storage: 100MB</li>
+<li>Speaker output or sound system</li>
+</ul>
+<h3>Download Now</h3>
+<h4>Click the Button Below To Start The Download File Setup</h4>
+<p>Version: 1.7.2</p>
+<p>Size: 15,1 MB </p>
+<p>Total Downloads: <span class="driverbell-total-downloads">XXX</span></p>
+<p><a class="driverbell-download-link" href="#" aria-disabled="true">Download DriverBellSetup.exe</a></p>
+</div>
 
-    .driverbell-download .download-meta {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 10px;
-      margin: 16px 0;
-    }
+<div id="driverbell-panel-id" class="driverbell-language-panel" lang="id" hidden>
+<h1>Welcome To DriverBell Download Page</h1>
+<p>Terima kasih sudah berkunjung ke halaman resmi download DriverBell. Di sini Anda bisa mengunduh installer terbaru dari software yang saya kembangkan untuk membantu sekolah, pesantren, dan lembaga pendidikan mengotomatisasi pemutaran bel harian dengan cara yang sederhana, stabil, dan aksesibel.</p>
+<p>Cukup install software nya, hubungkan komputer dengan sound system yang dipancarluaskan ke seluruh penjuru sekolah, buat jadwal bell kapan saja berbunyi, lalu biarkan semuanya berjalan secara otomatis.</p>
+<h2>Informasi Pengembangan</h2>
+<ul>
+<li>Versi: V1.7.2</li>
+<li>License: Free (No Payment alias gratis)</li>
+<li> Release Date: Senin, 13-07-2026</li>
+</ul>
+<h2>Minimum Requirements</h2>
+<ul>
+<li>Windows 10, Windows 11 atau yang lebih baru</li>
+<li>RAM minimum 2GB</li>
+<li>Prosesor: Intel Atau AMD</li>
+<li>64Bit</li>
+<li>Storage minimum 100MB</li>
+<li>Speaker Output atau sound system</li>
+</ul>
+<h3>Download Now</h3>
+<h4> Click the Button  Below To Start The Download File Setup</h4>
+<p>Version: 1.7.2</p>
+<p>Size: 15,1 MB </p>
+<p>Total Downloads: <span class="driverbell-total-downloads">XXX</span></p>
+<p><a class="driverbell-download-link" href="#" aria-disabled="true">Download DriverBellSetup.exe</a></p>
+</div>
 
-    .driverbell-download .download-meta div {
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 10px;
-      background: #ffffff;
-    }
+<script>
+(function () {
+  var repo = "dwicito03/DriverBell";
+  var downloadLinks = document.querySelectorAll(".driverbell-download-link");
+  var totalDownloads = document.querySelectorAll(".driverbell-total-downloads");
+  var englishButton = document.getElementById("driverbell-lang-en");
+  var indonesiaButton = document.getElementById("driverbell-lang-id");
+  var englishPanel = document.getElementById("driverbell-panel-en");
+  var indonesiaPanel = document.getElementById("driverbell-panel-id");
 
-    .driverbell-download .label {
-      display: block;
-      font-size: 0.9rem;
-      color: #64748b;
-    }
+  function setLanguage(language) {
+    var useEnglish = language === "en";
+    englishPanel.hidden = !useEnglish;
+    indonesiaPanel.hidden = useEnglish;
+    englishButton.setAttribute("aria-pressed", useEnglish ? "true" : "false");
+    indonesiaButton.setAttribute("aria-pressed", useEnglish ? "false" : "true");
+  }
 
-    .driverbell-download .value {
-      display: block;
-      margin-top: 2px;
-      font-weight: 700;
-      color: #111827;
-    }
+  englishButton.addEventListener("click", function () {
+    setLanguage("en");
+  });
+  indonesiaButton.addEventListener("click", function () {
+    setLanguage("id");
+  });
 
-    .driverbell-download .download-button {
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 8px;
-      background: #0f766e;
-      color: #ffffff;
-      font-weight: 700;
-      text-decoration: none;
-    }
+  function setAllText(elements, text) {
+    elements.forEach(function (element) {
+      element.textContent = text;
+    });
+  }
 
-    .driverbell-download .download-button[aria-disabled="true"] {
-      background: #94a3b8;
-      cursor: wait;
-      pointer-events: none;
-    }
+  function setAllDownloadLinks(url) {
+    downloadLinks.forEach(function (link) {
+      link.href = url;
+      link.removeAttribute("aria-disabled");
+    });
+  }
 
-    .driverbell-download .download-note {
-      margin-top: 12px;
-      color: #475569;
-      font-size: 0.95rem;
-    }
+  function findInstallerAsset(release) {
+    var assets = release.assets || [];
+    return assets.find(function (asset) {
+      return /driverbell.*setup.*\.exe$/i.test(asset.name);
+    }) || assets.find(function (asset) {
+      return /\.exe$/i.test(asset.name);
+    });
+  }
 
-    .driverbell-download .status {
-      margin-top: 10px;
-      color: #475569;
-    }
-  </style>
+  fetch("https://api.github.com/repos/" + repo + "/releases", {
+    headers: { "Accept": "application/vnd.github+json" }
+  })
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("GitHub API error");
+      }
+      return response.json();
+    })
+    .then(function (releases) {
+      var publicReleases = releases.filter(function (release) {
+        return !release.draft;
+      });
+      var latestRelease = publicReleases.find(function (release) {
+        return !release.prerelease;
+      }) || publicReleases[0];
+      var downloads = publicReleases.reduce(function (releaseTotal, release) {
+        return releaseTotal + (release.assets || []).reduce(function (assetTotal, asset) {
+          return assetTotal + (asset.download_count || 0);
+        }, 0);
+      }, 0);
 
-  <h1>Welcome To DriverBell Download Page</h1>
-  <p>Terima kasih sudah berkunjung ke halaman resmi download DriverBell. Di sini Anda bisa mengunduh installer terbaru untuk membantu sekolah, pesantren, dan lembaga pendidikan mengatur bell harian secara otomatis.</p>
-  <p>Cukup instal aplikasinya, hubungkan komputer ke speaker atau sound system sekolah, buat jadwal bell, lalu biarkan DriverBell menjalankannya sesuai waktu yang sudah ditentukan.</p>
+      setAllText(totalDownloads, downloads.toLocaleString("id-ID"));
 
-  <h2>Informasi Software</h2>
-  <ul>
-    <li>Versi: <span id="driverbell-version">Memuat...</span></li>
-    <li>Lisensi: Gratis</li>
-    <li>Tanggal rilis: <span id="driverbell-release-date">Memuat...</span></li>
-  </ul>
-
-  <h2>Kebutuhan Minimum</h2>
-  <ul>
-    <li>Windows 10, Windows 11, atau yang lebih baru</li>
-    <li>RAM minimum 2 GB</li>
-    <li>Prosesor Intel atau AMD</li>
-    <li>Windows 64-bit</li>
-    <li>Ruang penyimpanan minimum 100 MB</li>
-    <li>Speaker output atau sound system</li>
-  </ul>
-
-  <div class="download-card" aria-live="polite">
-    <h2>Download Sekarang</h2>
-    <p>Link download di bawah ini diambil langsung dari GitHub Release terbaru DriverBell.</p>
-
-    <div class="download-meta">
-      <div>
-        <span class="label">File</span>
-        <span class="value" id="driverbell-file-name">Memuat...</span>
-      </div>
-      <div>
-        <span class="label">Ukuran</span>
-        <span class="value" id="driverbell-file-size">Memuat...</span>
-      </div>
-      <div>
-        <span class="label">Total Downloads</span>
-        <span class="value" id="driverbell-total-downloads">Memuat...</span>
-      </div>
-    </div>
-
-    <a id="driverbell-download-button" class="download-button" href="#" aria-disabled="true">Memuat link download...</a>
-    <p class="download-note">Jika browser menampilkan peringatan keamanan, pastikan file diunduh dari halaman resmi ini atau dari halaman GitHub Release DriverBell.</p>
-    <p class="status" id="driverbell-download-status">Mengambil informasi release dari GitHub...</p>
-  </div>
-
-  <script>
-    (function () {
-      const GITHUB_REPO = "dwicito03/DriverBell";
-
-      const els = {
-        version: document.getElementById("driverbell-version"),
-        releaseDate: document.getElementById("driverbell-release-date"),
-        fileName: document.getElementById("driverbell-file-name"),
-        fileSize: document.getElementById("driverbell-file-size"),
-        totalDownloads: document.getElementById("driverbell-total-downloads"),
-        button: document.getElementById("driverbell-download-button"),
-        status: document.getElementById("driverbell-download-status")
-      };
-
-      const formatNumber = new Intl.NumberFormat("id-ID");
-
-      function formatBytes(bytes) {
-        if (!bytes || bytes < 1) return "-";
-        const units = ["B", "KB", "MB", "GB"];
-        let size = bytes;
-        let unitIndex = 0;
-        while (size >= 1024 && unitIndex < units.length - 1) {
-          size = size / 1024;
-          unitIndex += 1;
-        }
-        return size.toLocaleString("id-ID", {
-          maximumFractionDigits: unitIndex === 0 ? 0 : 1
-        }) + " " + units[unitIndex];
+      if (!latestRelease) {
+        setAllText(downloadLinks, "Download is not available yet");
+        return;
       }
 
-      function formatDate(value) {
-        if (!value) return "-";
-        return new Date(value).toLocaleDateString("id-ID", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric"
-        });
+      var installer = findInstallerAsset(latestRelease);
+      if (!installer) {
+        setAllText(downloadLinks, "Download is not available yet");
+        return;
       }
 
-      function findInstallerAsset(release) {
-        const assets = release.assets || [];
-        return assets.find(asset => /driverbell.*setup.*\.exe$/i.test(asset.name))
-          || assets.find(asset => /\.exe$/i.test(asset.name))
-          || assets[0];
-      }
-
-      function showError(message) {
-        els.version.textContent = "Tidak tersedia";
-        els.releaseDate.textContent = "Tidak tersedia";
-        els.fileName.textContent = "Tidak tersedia";
-        els.fileSize.textContent = "Tidak tersedia";
-        els.totalDownloads.textContent = "Tidak tersedia";
-        els.button.textContent = "Download belum tersedia";
-        els.button.setAttribute("aria-disabled", "true");
-        els.button.removeAttribute("href");
-        els.status.textContent = message;
-      }
-
-      async function loadReleaseInfo() {
-        try {
-          const response = await fetch("https://api.github.com/repos/" + GITHUB_REPO + "/releases", {
-            headers: { "Accept": "application/vnd.github+json" }
-          });
-
-          if (!response.ok) {
-            throw new Error("GitHub API error: " + response.status);
-          }
-
-          const releases = await response.json();
-          const publicReleases = releases.filter(release => !release.draft);
-          const latestRelease = publicReleases.find(release => !release.prerelease) || publicReleases[0];
-
-          if (!latestRelease) {
-            showError("Belum ada release publik di GitHub.");
-            return;
-          }
-
-          const installer = findInstallerAsset(latestRelease);
-          const totalDownloads = publicReleases.reduce((releaseTotal, release) => {
-            return releaseTotal + (release.assets || []).reduce((assetTotal, asset) => {
-              return assetTotal + (asset.download_count || 0);
-            }, 0);
-          }, 0);
-
-          if (!installer) {
-            showError("Release terbaru belum memiliki file installer.");
-            return;
-          }
-
-          els.version.textContent = latestRelease.tag_name || latestRelease.name || "Terbaru";
-          els.releaseDate.textContent = formatDate(latestRelease.published_at || latestRelease.created_at);
-          els.fileName.textContent = installer.name;
-          els.fileSize.textContent = formatBytes(installer.size);
-          els.totalDownloads.textContent = formatNumber.format(totalDownloads);
-
-          els.button.textContent = "Download DriverBell";
-          els.button.href = installer.browser_download_url;
-          els.button.removeAttribute("aria-disabled");
-          els.status.textContent = "Informasi download berhasil dimuat dari GitHub.";
-        } catch (error) {
-          showError("Gagal mengambil informasi dari GitHub. Silakan coba lagi nanti.");
-          console.error(error);
-        }
-      }
-
-      loadReleaseInfo();
-    })();
-  </script>
-</section>
+      setAllDownloadLinks(installer.browser_download_url);
+    })
+    .catch(function () {
+      setAllText(totalDownloads, "XXX");
+      setAllText(downloadLinks, "Download is not available yet");
+    });
+})();
+</script>
 
 <!-- wp:html /-->
 
-<!-- wp:html /--> jangan dihilangkan, ini harus tetap ada.
+<!-- wp:html /-->
